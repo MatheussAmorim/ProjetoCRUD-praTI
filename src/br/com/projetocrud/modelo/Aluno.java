@@ -1,8 +1,5 @@
 package br.com.projetocrud.modelo;
 
-import java.util.ArrayList;
-import java.util.Date;
-
 public class Aluno extends Pessoa {
 	
 	private float notaFinal;

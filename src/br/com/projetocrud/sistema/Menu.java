@@ -1,21 +1,14 @@
 package br.com.projetocrud.sistema;
 
-import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
-import br.com.projetocrud.modelo.Aluno;
-import br.com.projetocrud.modelo.Pessoa;
 
 public class Menu {	
 	    public void Inicializar () {
 
-	    	Scanner sc = new Scanner(System.in);
-			Scanner sc2 = new Scanner(System.in);
+	    	@SuppressWarnings("resource")
+			Scanner sc = new Scanner(System.in);
 			Sistema sistema = new Sistema();
-			
-	    	String n;
-	    	int t;
 
 			int menu = 0;
 			do {		
@@ -46,7 +39,8 @@ public class Menu {
 				break;
 			case 3:
 				System.out.print("Digite 1 para pessoa ou 2 para aluno: ");
-				int op = sc2.nextInt();
+				int op = sc.nextInt();
+				sc.nextLine();
 				if(op == 1) {
 					sistema.AtualizarPessoa();
 				}else if (op == 2){
@@ -58,6 +52,18 @@ public class Menu {
 				
 				break;
 			case 4:
+				System.out.print("Digite 1 para pessoa ou 2 para aluno: ");
+				int op2 = sc.nextInt();
+				sc.nextLine();
+				if(op2 == 1) {
+					sistema.DeletarPessoa();
+				}else if (op2 == 2){
+					sistema.DeletarAluno();
+				}else {
+					System.out.println("Opção inválida!");
+					System.out.println("");
+				}
+				
 				break;
 			default:
 				System.out.println("opção inválida");

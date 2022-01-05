@@ -1,9 +1,5 @@
 package br.com.projetocrud.modelo;
 
-import java.util.ArrayList;
-import java.util.Date;
-
-
 public class Pessoa {
 	
 	private String nome;
