@@ -1,17 +1,21 @@
 package br.com.projetocrud.sistema;
 
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class teste2 {
-	    public static void main(String[] args) {
-	    	
+import br.com.projetocrud.modelo.Aluno;
+import br.com.projetocrud.modelo.Pessoa;
+
+public class Menu {
+	    public  void MenuPrincipal () {
+
 	    	Scanner sc = new Scanner(System.in);
 	    	Sistema sistema = new Sistema();
 	    	
 	    	String n;
 	    	int t;
-	    	
-	    	
+
 			int menu = 0;
 			do {		
 			System.out.println("Digite para mover entre os menus:");			
@@ -36,13 +40,12 @@ public class teste2 {
 				menu = sc.nextInt();
 				System.out.println("");			
 			case 1:
-				
 				sistema.Criar();
-				
-				
 				break;
 			case 2:
-				System.out.println("opção 2");
+				sistema.ListarPessoas();
+				sistema.ListarAlunos();
+				
 				break;
 			default:
 				System.out.println("opção inválida");

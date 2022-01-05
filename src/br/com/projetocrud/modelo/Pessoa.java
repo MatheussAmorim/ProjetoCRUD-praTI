@@ -2,14 +2,15 @@ package br.com.projetocrud.modelo;
 
 import java.util.Date;
 
+
 public class Pessoa {
 	
 	private String nome;
-	private int telefone;
-	private Date dataCadastro;
-	private Date dataAlteração;
+	private long telefone;
+	private String dataCadastro;
+	private String dataAlteração;
 	
-	public Pessoa(String nome, int telefone, Date dataCadastro, Date dataAlteração) {
+	public Pessoa(String nome, long telefone, String dataCadastro, String dataAlteração) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.dataCadastro = dataCadastro;
@@ -23,25 +24,27 @@ public class Pessoa {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public int getTelefone() {
+	public long getTelefone() {
 		return telefone;
 	}
-	public void setTelefone(int telefone) {
+	public void setTelefone(long telefone) {
 		this.telefone = telefone;
 	}
-	public Date getDataCadastro() {
+	public String getDataCadastro() {
 		return dataCadastro;
 	}
-	public void setDataCadastro(Date dataCadastro) {
+	public void setDataCadastro(String dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
-	public Date getDataAlteração() {
+	public String getDataAlteração() {
 		return dataAlteração;
 	}
-	public void setDataAlteração(Date dataAlteração) {
+	public void setDataAlteração(String dataAlteração) {
 		this.dataAlteração = dataAlteração;
 	}
-	
+	public String toString() {
+		return "Nome: " + nome + "Telefone: " + telefone;
+	}
 	
 		
 
