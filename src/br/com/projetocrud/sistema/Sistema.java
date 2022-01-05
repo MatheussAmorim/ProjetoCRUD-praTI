@@ -7,6 +7,7 @@ import java.util.Scanner;
 import br.com.projetocrud.modelo.Aluno;
 import br.com.projetocrud.modelo.Pessoa;
 import br.com.projetocrud.sistema.Menu;
+import br.com.projetocrud.sistema.Main;
 
 public class Sistema {
 	
@@ -17,10 +18,9 @@ public class Sistema {
 	ArrayList<Aluno> listaAluno = new ArrayList<Aluno>();
 	
 	String nomeAux;
-	long telefoneAux;
+	String telefoneAux;
 	String dataNascimentoAux;
-	float notaFinalAux = 0;
-	Menu menu = new Menu();
+	float notaFinalAux;
 
 	public void Criar()  {
 		
@@ -28,24 +28,23 @@ public class Sistema {
 		nomeAux = sc.nextLine();
 		
 		System.out.print("Digite o telefone:");	
-		telefoneAux = sc.nextLong();
+		telefoneAux = sc2.nextLine();
 		
 		System.out.print("Digite a data de nascimento:");			
-		dataNascimentoAux = sc2.nextLine();
+		dataNascimentoAux = sc.nextLine();
 		 	
 		System.out.print("Digite a nota:");	
 		notaFinalAux = sc.nextFloat();
+		sc.nextLine();
 		
 		if(notaFinalAux == 0) {
 			CriarPessoa();		
 		}else{
 			CriarAluno();			
 		}
-		
-		
+
 		System.out.println();	
 		
-		menu.MenuPrincipal();
 	}
 	
 	/*
@@ -54,6 +53,7 @@ public class Sistema {
 	public void CriarPessoa() {
 		Pessoa p1 = new Pessoa(nomeAux, telefoneAux, dataNascimentoAux, dataNascimentoAux);
 		listaPessoa.add(p1);
+		
 	}	
 	
 	/*
@@ -68,8 +68,11 @@ public class Sistema {
 	 * Imprime no console a lista de Pessoas cadastradas.
 	 * */
 	public void ListarPessoas() {
+		int aux = 1;
 		for(Pessoa pessoa : listaPessoa) {
+			System.out.print(aux + " - ");
 			System.out.println(pessoa);
+			aux++;
 		}
 	}
 	
@@ -77,9 +80,59 @@ public class Sistema {
 	 * Imprime no console a lista de Alunos cadastradas.
 	 * */
 	public void ListarAlunos() {
+		int aux = 1;
 		for(Aluno aluno : listaAluno) {
+			System.out.print(aux + " - ");
 			System.out.println(aluno);
+			aux++;
 		}
 	}
+	
+	/*
+	 * Atualiza os dados de uma Pessoa.
+	 * */
+	public void AtualizarPessoa() {
+		ListarPessoas();
+	
+		System.out.print("Informe o número que deseja alterar: ");
+		int pLista = sc.nextInt();
+		sc.nextLine();
+		
+		System.out.println("1 - Alterar nome");
+		System.out.println("2 - Alterar telefone");
+		System.out.println("3 - Alterar data de nascimento");
+		int pDados = sc.nextInt();
+		sc.nextLine();
+		
+		if(pDados == 1) {
+			System.out.print("Digite o novo nome: ");
+			nomeAux = sc.nextLine();
+			Pessoa pessoa = (Pessoa) listaPessoa.get(pLista-1);
+			pessoa.setNome(nomeAux);
+			
+		}else if(pDados == 2) {
+			System.out.print("Digite o novo telefone: ");
+			telefoneAux = sc.nextLine();
+			Pessoa pessoa = (Pessoa) listaPessoa.get(pLista-1);
+			pessoa.setTelefone(telefoneAux);
+			
+		}else if(pDados == 3) {
+			System.out.print("Digite a nova data de nascimento: ");
+			dataNascimentoAux = sc.nextLine();
+			Pessoa pessoa = (Pessoa) listaPessoa.get(pLista-1);
+			pessoa.setDataCadastro(dataNascimentoAux);
+			
+		}else {
+			System.out.println("Opção inválida");
+		}
+		
+	}
+	
+	/*
+	 * Atualiza os dados de um Aluno.
+	 * */
+	public void AtualizarAluno() {
+		ListarAlunos();
+	}	
 	
 }

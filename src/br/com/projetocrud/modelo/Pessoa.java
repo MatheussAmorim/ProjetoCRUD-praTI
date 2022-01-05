@@ -1,16 +1,20 @@
 package br.com.projetocrud.modelo;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 
 public class Pessoa {
 	
 	private String nome;
-	private long telefone;
+	private String telefone;
+	private String dataNascimento;
 	private String dataCadastro;
 	private String dataAlteração;
 	
-	public Pessoa(String nome, long telefone, String dataCadastro, String dataAlteração) {
+
+	
+	public Pessoa(String nome, String telefone, String dataCadastro, String dataAlteração) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.dataCadastro = dataCadastro;
@@ -24,10 +28,10 @@ public class Pessoa {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public long getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
-	public void setTelefone(long telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 	public String getDataCadastro() {
@@ -43,7 +47,17 @@ public class Pessoa {
 		this.dataAlteração = dataAlteração;
 	}
 	public String toString() {
-		return "Nome: " + nome + "Telefone: " + telefone;
+		return "Nome: " + nome + " Telefone: " + telefone;
+	}
+
+
+	public String getDataNascimento() {
+		return dataNascimento;
+	}
+
+
+	public void setDataNascimento(String dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 	
 		
