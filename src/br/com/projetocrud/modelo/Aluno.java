@@ -1,5 +1,8 @@
 package br.com.projetocrud.modelo;
 
+import java.time.LocalDate;
+
+
 public class Aluno extends Pessoa {
 	
 	private float notaFinal;
@@ -7,8 +10,8 @@ public class Aluno extends Pessoa {
 	
 	
 	
-	public Aluno(String nome, String telefone, String dataCadastro, String dataAlteração, float notaFinal) {
-		super(nome, telefone, dataCadastro, dataAlteração);
+	public Aluno(String nome, String telefone, String dataNascimento, LocalDate dataCadastro, LocalDate dataAlteração, float notaFinal) {
+		super(nome, telefone, dataNascimento, dataCadastro, dataAlteração);
 		this.notaFinal = notaFinal;
 	}
 	
@@ -29,7 +32,9 @@ public class Aluno extends Pessoa {
 	}
 	
 	public String toString() {
-		return "Nome: " + super.getNome() + " Telefone: " + super.getTelefone();
+		return "Nome: " + getNome() + " | Telefone: " + getTelefone() + " | Data do nascimento: " + getDataNascimento() + 
+		 " | Nota final: " + getNotaFinal() + " | Data do Cadastro: " + dtf.format(getDataCadastro()) + " | Data da ultima alteracao: " +
+		dtf.format(getDataAlteração());
 	}
 
 	
