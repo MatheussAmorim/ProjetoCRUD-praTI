@@ -1,9 +1,8 @@
 package br.com.projetocrud.sistema;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.Scanner;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import br.com.projetocrud.modelo.Aluno;
 import br.com.projetocrud.modelo.Pessoa;
@@ -15,23 +14,26 @@ public class Sistema {
 
 	ArrayList<Pessoa> listaPessoa = new ArrayList<Pessoa>();
 	ArrayList<Aluno> listaAluno = new ArrayList<Aluno>();
+	
 
+	/*
+	 * Atributos auxiliares
+	 */
 	String nomeAux;
 	String telefoneAux;
 	String dataNascimentoAux;
 	float notaFinalAux;
 	LocalDate dataCadastroAux;
 	LocalDate dataAlteracaoAux;
-	
 
 	/*
 	 * Cria um objeto do tipo pessoa ou aluno, conforme os dados do input.
 	 */
-	public void Criar() {
+	public void Cadastrar() {
 		System.out.print("Digite o nome:");
 		nomeAux = sc.nextLine();
 		System.out.print("Digite o telefone:");
-		telefoneAux = sc2.nextLine();
+		telefoneAux = sc.nextLine();
 		System.out.print("Digite a data de nascimento *dd/MM/aaaa*:");
 		dataNascimentoAux = sc.nextLine();
 		System.out.print("Digite a nota:");
@@ -39,7 +41,7 @@ public class Sistema {
 		sc.nextLine();
 		dataCadastroAux = LocalDate.now();
 		dataAlteracaoAux = LocalDate.now();
-		
+
 		if (notaFinalAux == 0) {
 			CriarPessoa();
 		} else {
@@ -82,11 +84,15 @@ public class Sistema {
 	 */
 	public void ListarAlunos() {
 		System.out.println("Lista de Alunos:");
-		int aux = 1;
-		for (Aluno aluno : listaAluno) {
-			System.out.print(aux + " - ");
-			System.out.println(aluno);
-			aux++;
+		if (listaAluno.size() != 0) {
+			int aux = 1;
+			for (Aluno aluno : listaAluno) {
+				System.out.print(aux + " - ");
+				System.out.println(aluno);
+				aux++;
+			}
+		} else {
+			System.out.println("Nenhum aluno cadastrado.");
 		}
 	}
 
@@ -100,32 +106,31 @@ public class Sistema {
 		int pLista = sc.nextInt();
 		sc.nextLine();
 
+		Pessoa pessoa = (Pessoa) listaPessoa.get(pLista - 1);
+		
 		System.out.println("1 - Alterar nome");
 		System.out.println("2 - Alterar telefone");
 		System.out.println("3 - Alterar data de nascimento");
 		int pDados = sc.nextInt();
 		sc.nextLine();
-		
+
 		dataAlteracaoAux = LocalDate.now();
 
 		if (pDados == 1) {
 			System.out.print("Digite o novo nome: ");
 			nomeAux = sc.nextLine();
-			Pessoa pessoa = (Pessoa) listaPessoa.get(pLista - 1);
 			pessoa.setNome(nomeAux);
 			pessoa.setDataAlteração(dataAlteracaoAux);
 
 		} else if (pDados == 2) {
 			System.out.print("Digite o novo telefone: ");
 			telefoneAux = sc.nextLine();
-			Pessoa pessoa = (Pessoa) listaPessoa.get(pLista - 1);
 			pessoa.setTelefone(telefoneAux);
 			pessoa.setDataAlteração(dataAlteracaoAux);
 
 		} else if (pDados == 3) {
 			System.out.print("Digite a nova data de nascimento: ");
 			dataNascimentoAux = sc.nextLine();
-			Pessoa pessoa = (Pessoa) listaPessoa.get(pLista - 1);
 			pessoa.setDataNascimento(dataNascimentoAux);
 			pessoa.setDataAlteração(dataAlteracaoAux);
 
@@ -142,36 +147,41 @@ public class Sistema {
 		ListarAlunos();
 
 		System.out.print("Informe o número que deseja alterar: ");
-		int pLista = sc.nextInt();
+		int aLista = sc.nextInt();
 		sc.nextLine();
+
+		Aluno aluno = (Aluno) listaAluno.get(aLista - 1);
 
 		System.out.println("1 - Alterar nome");
 		System.out.println("2 - Alterar telefone");
 		System.out.println("3 - Alterar data de nascimento");
-		int pDados = sc.nextInt();
+		System.out.println("4 - Alterar nota final");
+		int aDados = sc.nextInt();
 		sc.nextLine();
 
-		if (pDados == 1) {
+		if (aDados == 1) {
 			System.out.print("Digite o novo nome: ");
 			nomeAux = sc.nextLine();
-			Aluno aluno = (Aluno) listaAluno.get(pLista - 1);
 			aluno.setNome(nomeAux);
 
-		} else if (pDados == 2) {
+		} else if (aDados == 2) {
 			System.out.print("Digite o novo telefone: ");
 			telefoneAux = sc.nextLine();
-			Aluno aluno = (Aluno) listaAluno.get(pLista - 1);
 			aluno.setTelefone(telefoneAux);
 
-		} else if (pDados == 3) {
+		} else if (aDados == 3) {
 			System.out.print("Digite a nova data de nascimento: ");
 			dataNascimentoAux = sc.nextLine();
-			Aluno aluno = (Aluno) listaAluno.get(pLista - 1);
 			aluno.setDataNascimento(dataNascimentoAux);
 
+		} else if (aDados == 4) {
+			System.out.print("Digite a nova nota final: ");
+			notaFinalAux = sc.nextFloat();
+			sc.nextLine();
+			aluno.setNotaFinal(notaFinalAux);
 		} else {
-			System.out.println("Opção inválida");
 		}
+		System.out.println("Opção inválida");
 	}
 
 	/*
@@ -182,20 +192,17 @@ public class Sistema {
 		System.out.print("Informe o número que deseja excluir: ");
 		int pLista2 = sc.nextInt();
 		sc.nextLine();
-		listaPessoa.remove(pLista2 - 1);
-
-		/*
-		 * Deleta a Pessoa da lista.
-		 */
+		listaPessoa.remove(pLista2 - 1);	
 	}
-
+	
+	/*
+	 * Deleta o Aluno da lista.
+	 */
 	public void DeletarAluno() {
 		ListarAlunos();
 		System.out.print("Informe o número que deseja excluir: ");
 		int pLista2 = sc.nextInt();
 		sc.nextLine();
 		listaAluno.remove(pLista2 - 1);
-
 	}
-
 }

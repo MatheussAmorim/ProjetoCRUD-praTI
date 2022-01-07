@@ -4,16 +4,16 @@ import java.util.Scanner;
 
 
 public class Menu {	
-	    public void Inicializar () {
+			
+		public void Inicializar () {
 
 	    	@SuppressWarnings("resource")
 			Scanner sc = new Scanner(System.in);
 			Sistema sistema = new Sistema();
-
+			
 			int menu = 0;
 			do {		
-				System.out.println("Digite para mover entre os menus:");			
-				System.out.println("");
+				System.out.println("Digite o número para mover entre menus:");			
 				System.out.println("1 - Para cadastrar uma pessoa/aluno");
 				System.out.println("2 - Para listar pessoas/alunos");
 				System.out.println("3 - Atualizar dados de uma pessoa/aluno");
@@ -25,7 +25,7 @@ public class Menu {
 			
 			switch(menu) {				
 			case 1:
-				sistema.Criar();
+				sistema.Cadastrar();
 				break;
 			case 2:		
 				sistema.ListarPessoas();						
@@ -60,9 +60,13 @@ public class Menu {
 				}	
 				break;
 			case 5:
+				System.out.println("Programa encerrado!");
 				System.exit(0);
 			default:
-				System.out.println("opção inválida");
+				System.out.println("Digite uma opçao valida!");
+				System.out.println("");
+				menu = 1;
+				break;
 			}
 			} while (menu != 0);
 	    }

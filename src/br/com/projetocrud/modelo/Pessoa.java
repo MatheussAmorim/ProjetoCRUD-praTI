@@ -12,8 +12,6 @@ public class Pessoa {
 	private LocalDate dataAlteração;
 	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	
-
-	
 	public Pessoa(String nome, String telefone, String dataNascimento, LocalDate dataCadastro, LocalDate dataAlteração) {
 		this.nome = nome;
 		this.telefone = telefone;
@@ -21,8 +19,7 @@ public class Pessoa {
 		this.dataCadastro = dataCadastro;
 		this.dataAlteração = dataAlteração;	
 	}
-	
-	
+		
 	public String getNome() {
 		return nome;
 	}
@@ -52,16 +49,11 @@ public class Pessoa {
 				" | Data do Cadastro: " + dtf.format(getDataCadastro()) + " | Data da ultima alteracao: " + dtf.format(getDataAlteração());
 	}
 
-
 	public String getDataNascimento() {
 		return dataNascimento;
 	}
 
-
 	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
-	
-		
-
 }
